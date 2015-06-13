@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HtmlToPdfOrImage
 {
-    public class Convertor
+    public class Api
     {
         //"http://localhost:25288/Api/"
         //"http://htmltopdforimage.com/Api/"
@@ -28,7 +28,7 @@ namespace HtmlToPdfOrImage
         }
 
 
-        public Convertor(string apiKey, string password)
+        public Api(string apiKey, string password)
         {
             ApiKey = apiKey;
             Password = password;
@@ -59,10 +59,17 @@ namespace HtmlToPdfOrImage
         {
             return Execute<byte[]>(ApiUrl + "Generate", settings);
         }
-        private JsonResultViewModel Execute<T>(string url, object data)
+        public JsonResultViewModel Credit()
+        {
+            return Execute<int>(ApiUrl + "Credit");
+        }
+        private JsonResultViewModel Execute<T>(string url, object data = null)
         {
             var result = Execute<JsonResultViewModel>(url, Newtonsoft.Json.JsonConvert.SerializeObject(data));
-            result.model = (T)Newtonsoft.Json.JsonConvert.DeserializeObject(result.model.ToString(), typeof(T));
+            if (result.model != null)
+            {
+                result.model = (T)Newtonsoft.Json.JsonConvert.DeserializeObject(result.model.ToString(), typeof(T));
+            }
             return result;
         }
         private T Execute<T>(string url, string data)
@@ -74,7 +81,7 @@ namespace HtmlToPdfOrImage
         {
             var httpRequest = (HttpWebRequest)WebRequest.Create(url);
 
-            byte[] textArray = Encoding.UTF8.GetBytes(data);
+            byte[] textArray = data == null ? new byte[0] : Encoding.UTF8.GetBytes(data);
             httpRequest.Method = "POST";
             httpRequest.ContentType = "application/json; charset=utf-8";
             httpRequest.Timeout = Timeout;

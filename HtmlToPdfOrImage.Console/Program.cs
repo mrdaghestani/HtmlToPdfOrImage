@@ -11,9 +11,9 @@ namespace HtmlToPdfOrImage.Console
     {
         static void Main(string[] args)
         {
-            var convertor = new HtmlToPdfOrImage.Convertor("f4a43488-8896-491c-a07c-4605175346b1", "8U9G6GSa");
+            var api = new HtmlToPdfOrImage.Api("f4a43488-8896-491c-a07c-4605175346b1", "8U9G6GSa");
             //var result = convertor.Convert("<b>Html to PDF Sample</b>");
-            var result = convertor.Convert(new Uri("http://google.com"));
+            var result = api.Convert(new Uri("http://google.com"));
             if (result.error)
             {
                 foreach (var msg in result.msgs)
@@ -24,6 +24,19 @@ namespace HtmlToPdfOrImage.Console
             else
             {
                 File.WriteAllBytes("myfile.pdf", (byte[])result.model);
+                System.Console.WriteLine("Done.");
+            }
+            var creditResult = api.Credit();
+            if (result.error)
+            {
+                foreach (var msg in result.msgs)
+                {
+                    System.Console.WriteLine(msg.Message);
+                }
+            }
+            else
+            {
+                System.Console.WriteLine("Credit: " + creditResult.model);
             }
         }
     }
