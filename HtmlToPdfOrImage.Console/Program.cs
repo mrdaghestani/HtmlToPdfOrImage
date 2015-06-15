@@ -11,9 +11,9 @@ namespace HtmlToPdfOrImage.Console
     {
         static void Main(string[] args)
         {
-            var api = new HtmlToPdfOrImage.Api("f4a43488-8896-491c-a07c-4605175346b1", "8U9G6GSa");
-            //var result = convertor.Convert("<b>Html to PDF Sample</b>");
-            var result = api.Convert(new Uri("http://google.com"));
+            var api = new HtmlToPdfOrImage.Api("99433eae-569c-470d-a763-0a3d0b28ad21", "vmZ2Qryg");
+            var result = api.Convert("<b>Html to PDF Sample</b>");
+            //var result = api.Convert(new Uri("http://google.com"));
             if (result.error)
             {
                 foreach (var msg in result.msgs)

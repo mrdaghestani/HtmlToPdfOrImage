@@ -12,14 +12,14 @@ namespace HtmlToPdfOrImage
     {
         //"http://localhost:25288/Api/"
         //"http://htmltopdforimage.com/Api/"
-        private string _apiUrl = "http://localhost:25288/Api/";
+        private string _apiUrl = "http://htmltopdforimage.com/Api/";
 
         public string ApiUrl
         {
             get { return _apiUrl; }
             set { _apiUrl = value; }
         }
-        private int _timeout = 60 * 1000;
+        private int _timeout = 2 * 60 * 1000;
 
         public int Timeout
         {
