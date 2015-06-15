@@ -1,7 +1,6 @@
-# HtmlToPdfOrImage
-This is a wrapper for using HtmlToPdfOrImage.com api.
-
 # Html to Pdf or Image
+
+This is a wrapper for using HtmlToPdfOrImage.com api.
 
 ## Installation
 
